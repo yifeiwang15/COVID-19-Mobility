@@ -1,9 +1,9 @@
 %% load data
 
-[nytLogDC,~] = load_NYT('data/us-states_1208.csv'); % log daily cases
+[nytLogDC,~] = load_NYT('data/us-states.csv'); % log daily cases
 
 dotM = CMobility_DoT();
-dotM.load_state_data('data/trips_state_1129.csv',1); % mobility
+dotM.load_state_data('data/trips_state.csv',1); % mobility
 
 % mask and restaurant policies
 policy ={};
@@ -69,15 +69,16 @@ end
 %% overall performance
 
 % box plot of nRMSE and RALE
-
-figure;
+figure;   
+set(gcf,'unit','centimeters','position',[10 5 30 20]);
+subplot(2,2,1); 
 boxplot(reportMSE,{'3 days','7 days','10 days','14 days'});
 text([1 2 3 4], median(reportMSE)-0.007, num2str(median(reportMSE)','%.3f'), 'FontSize', 8)
 hold on
 plot(median(reportMSE),'ro-')
 ylabel('nRMSE')
 
-figure;
+subplot(2,2,2); 
 boxplot(reportAVG,{'3 days','7 days','10 days','14 days'});
 text([1 2 3 4], median(reportAVG)-0.0042, num2str(median(reportAVG)','%.3f'), 'FontSize', 8)
 hold on
@@ -85,25 +86,40 @@ plot(median(reportAVG),'ro-')
 ylabel('RALE')
 
 
-% one prediction example
 
-StateName = 'UT';
-model = COVID_Mobility();
-model.fit(nytLogDC(:,1:end-14), dotM.mStateMobility, policy, StateName);
-model.test(nytLogDC(:,1:end), dotM.mStateMobility, [], StateName, 1, 14);
 
 
 % significant factors
+subplot(2,2,3); 
+nFreqCount = sum(TableP>0);
+nFreqCount(12) = nFreqCount(12)-1; % remove states of missing restaurant policy.
+nFreqCount(13) = nFreqCount(13)-17; % remove states of missing mask policy.
+nFreq = nFreqCount ./ ([51*ones(1,11), 51-1, 51-17]);
+[~, Idx] = sort(nFreq,'ascend');
+mVarNames = {'Dis-0-1','Dis-1-3', 'Dis-3-5', 'Dis-5-10', 'Dis-10-25', 'Dis-25-50', ...
+             'Dis-50-100', 'Dis-100-250', 'Dis-250-500', 'Dis > 500', 'Stay-at-home', ...
+             'Restaurant Policy', 'Mask Policy'};
 
+barh(nFreq(Idx));
+set(gca,'yTickLabel',mVarNames(Idx))
+xlabel('Frequency being identified as significant')
+
+subplot(2,2,4); 
 mask = FitTableP{:,2:end}<=0.05;
 TableP = -log(FitTableP{:, 2:end}).*mask;
 Coeffs = FitTable{:,2:end}.*mask;
 Coeffs(Coeffs == 0) = NaN;
-figure;
 boxplot(Coeffs(:,[13, 12, 11, 1, 2, 10]),{'Mask Policy', 'Restaurant Policy', 'Stay-at-home', 'Dis-0-1', 'Dis-1-3', 'Dis > 500'},'orientation','horizontal')
 xlabel('Estimated coefficients')
 hold on
 plot([0, 0], [0, 7],'--')
 
+
+% one prediction example
+
+StateName = 'MA';
+model = COVID_Mobility();
+model.fit(nytLogDC(:,1:end-14), dotM.mStateMobility, policy, StateName);
+model.test(nytLogDC(:,1:end), dotM.mStateMobility, [], StateName, 1, 14);
 
 

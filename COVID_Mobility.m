@@ -312,6 +312,8 @@ classdef COVID_Mobility < handle
             %% figure 1 -- Transimission rates reconstruction
            
             figure; 
+            subplot(2,1,1)
+            
             % Observed R
             plot( startDate+pandemicStart : startDate+gtLen-1, exp(gtLogR(pandemicStart+1:end)), ...
                  'Color', [0, 0.4470, 0.7410],'LineWidth', 0.6);
@@ -362,7 +364,7 @@ classdef COVID_Mobility < handle
             
             %% figure 2 -- Daily cases prediction
             
-            figure;
+            subplot(2,1,2)
          
             % gt
             plot( startDate+this.mPandemicStart : startDate+gtLen-1, gtLogDC(this.mPandemicStart+1:end) , ...
@@ -382,7 +384,7 @@ classdef COVID_Mobility < handle
             ylim_min = min(gtLogDC(this.mPandemicStart+1:end))*0.8;
             ylim_max = max(gtLogDC(this.mPandemicStart+1:end))*1.2;
             
-            legend( {'Observed cases', 'Processed cases', 'Predicted cases'}, 'Location', 'NorthWest' );
+            legend( {'Observed daily cases', 'Processed cases', 'Predicted cases'}, 'Location', 'NorthWest' );
             
             text(this.mEndDate+2, ylim_min+(ylim_max-ylim_min)*0.2, 'Preds');
             title( state );
