@@ -7,13 +7,19 @@ This approach estimates the transmission rates via robust regression on local mo
 
 ## Quick usage
 This work uses matlab-R2020a for implementation. Run `run.m` to see the overall model performance on 51 states (including DC).
+
+## Results
 ```
-Results (Updated until 12.20)
+(Updated until 12.20)
+Top: Prediction evaluations on nRMSE (Normalized rMSE) and relative accumulated log error (RALE). 
+Bottom: Study of independent variables being identified as statistical significant.
 ```
+![Overall performance](https://github.com/yifeiwang15/COVID-19-Mobility/blob/main/output.png)
 
-
-
-
+```
+One example showing the 14-day prediction of COVID-19 transmission rates and confirmed cases.
+```
+![Prediction visulization example](https://github.com/yifeiwang15/COVID-19-Mobility/blob/main/pred.png)
 
 
 ## Instructions to run
