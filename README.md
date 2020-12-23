@@ -6,7 +6,7 @@ This approach estimates the transmission rates via robust regression on local mo
 ![Model architecture](https://github.com/yifeiwang15/COVID-19-Mobility/blob/main/architecture.png)
 
 ## Quick usage
-This work uses matlab-R2020a for implementation. Run `run.m` to see the overall model performance on 51 states (including DC).
+This work uses matlab-R2020a for implementation. Run `run.m` to see the overall model performance on 51 states (including DC). The expected running time is 5 min for a normal laptop, like MaxBook Pro 2020. 
 
 ## Results
 ```
