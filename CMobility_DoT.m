@@ -26,7 +26,7 @@ classdef CMobility_DoT < handle
             columnnames = cell(1, this.mStartDate - this.mEndDate + 1);
             varTypes = cell(1, this.mStartDate - this.mEndDate + 1);
             for k = this.mStartDate : this.mEndDate
-                columnnames{k-this.mStartDate+1} = ['D', datestr(k, 'mmdd')];
+                columnnames{k-this.mStartDate+1} = ['D', datestr(k, 'yyyymmdd')];
                 varTypes{k-this.mStartDate+1} = 'double';
             end
             
@@ -55,7 +55,7 @@ classdef CMobility_DoT < handle
             end
             
             for k = 1 : size(temp,1)
-                date = ['D', temp{k,1}{1}(6:7), temp{k,1}{1}(9:10)];
+                date = ['D',temp{k,1}{1}(1:4), temp{k,1}{1}(6:7), temp{k,1}{1}(9:10)];
                 state = temp{k,3};
                 popNotAtHome = temp{k,7};
                 numTrips = temp{k, 9:end};

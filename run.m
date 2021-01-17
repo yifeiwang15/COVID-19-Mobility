@@ -91,6 +91,11 @@ ylabel('RALE')
 
 % significant factors
 subplot(2,2,3); 
+mask = FitTableP{:,2:end}<=0.05;
+TableP = -log(FitTableP{:, 2:end}).*mask;
+Coeffs = FitTable{:,2:end}.*mask;
+Coeffs(Coeffs == 0) = NaN;
+
 nFreqCount = sum(TableP>0);
 nFreqCount(12) = nFreqCount(12)-1; % remove states of missing restaurant policy.
 nFreqCount(13) = nFreqCount(13)-17; % remove states of missing mask policy.
@@ -105,10 +110,7 @@ set(gca,'yTickLabel',mVarNames(Idx))
 xlabel('Frequency being identified as significant')
 
 subplot(2,2,4); 
-mask = FitTableP{:,2:end}<=0.05;
-TableP = -log(FitTableP{:, 2:end}).*mask;
-Coeffs = FitTable{:,2:end}.*mask;
-Coeffs(Coeffs == 0) = NaN;
+
 boxplot(Coeffs(:,[13, 12, 11, 1, 2, 10]),{'Mask Policy', 'Restaurant Policy', 'Stay-at-home', 'Dis-0-1', 'Dis-1-3', 'Dis > 500'},'orientation','horizontal')
 xlabel('Estimated coefficients')
 hold on

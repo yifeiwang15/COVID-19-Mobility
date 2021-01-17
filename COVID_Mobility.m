@@ -200,7 +200,7 @@ classdef COVID_Mobility < handle
             if length(temp) == 4
                 mobilityDay = datenum( ['2020', temp], 'yyyymmdd' );
             else
-                mobilityDay = datenum( temp );
+                mobilityDay = datenum( [temp(1:4), '-', temp(5:6), '-', temp(7:8)] );
             end
 
             if dcDay < mobilityDay

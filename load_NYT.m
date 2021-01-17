@@ -5,7 +5,7 @@ data = readtable( filename, 'HeaderLines', 1  );
 dates = unique( data{:,1} );
 varnames = cell(1, length(dates));
 for k = 1 : length(dates)
-    varnames{k} = sprintf( 'x%02d_%02d', dates(k).Month, dates(k).Day );
+    varnames{k} = sprintf( 'x%04d_%02d_%02d', dates(k).Year, dates(k).Month, dates(k).Day );
 end
 varnames = unique( varnames );
     
@@ -137,7 +137,7 @@ end
 outTable = table('Size', [length(rownames), length( varnames )], 'VariableType', vartypes, 'VariableNames', varnames, 'RowNames', rownames );
 
 for k = 1 : size( data, 1 )
-    varname = sprintf( 'x%02d_%02d', data{k,1}.Month, data{k,1}.Day );
+    varname = sprintf( 'x%04d_%02d_%02d',  data{k,1}.Year, data{k,1}.Month, data{k,1}.Day );
     rowname = data{k, 2}{1};
     outTable(rowname, varname) = data(k,4);
 end
