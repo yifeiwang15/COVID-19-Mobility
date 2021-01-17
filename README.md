@@ -10,16 +10,16 @@ This work uses matlab-R2020a for implementation. Run `run.m` to see the overall 
 
 ## Results
 ```
-(Updated until 12.20)
+(Updated until 2020.01.15)
 Top: Prediction evaluations on nRMSE (Normalized rMSE) and relative accumulated log error (RALE). 
 Bottom: Study of independent variables being identified as statistical significant.
 ```
-![Overall performance](https://github.com/yifeiwang15/COVID-19-Mobility/blob/main/output.png)
+![Overall performance](https://github.com/yifeiwang15/COVID-19-Mobility/blob/main/output_0115.png)
 
 ```
 One example showing the 14-day prediction of COVID-19 transmission rates and confirmed cases.
 ```
-![Prediction visulization example](https://github.com/yifeiwang15/COVID-19-Mobility/blob/main/pred.png)
+![Prediction visulization example](https://github.com/yifeiwang15/COVID-19-Mobility/blob/main/pred_0115.png)
 
 
 ## Instructions to run
