@@ -10,7 +10,7 @@ This work uses matlab-R2020a for implementation. Run `run.m` to see the overall 
 
 ## Results
 ```
-(Updated until 2020.01.26)
+(Updated until 2020.02.11)
 Top: Prediction evaluations on nRMSE (Normalized rMSE) and relative accumulated log error (RALE). 
 Bottom: Study of independent variables being identified as statistical significant.
 ```
