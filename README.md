@@ -1,5 +1,5 @@
 # COVID-19-Mobility
-This is the MATLAB implementation of COVID-19 Trend Forecasting Using State-level Mobility and Policy.
+This is the MATLAB implementation of [COVID-19 Trend Forecasting Using State-level Mobility and Policy](https://www.medrxiv.org/content/medrxiv/early/2021/01/06/2021.01.04.21249218.full.pdf).
 
 This approach estimates the transmission rates via robust regression on local mobility statistics as well as local policies. Then the prediction of daily cases can be derived in an accumulated manner. Furthermore, a novel calibration step through solving an optimization problem is added to adjust the short-term influences of implicit population behaviors, like people's consciousness of sanitation and self-protection.
 
@@ -45,3 +45,16 @@ The `data` directory is expected to contain the following files:
     ```
 
 After updating the lastest files for cases and mobility, run `run.m` to see the lastest prediction results and performance. 
+
+## Citation
+If you use the code, please cite this manuscript
+```
+@article{wang2021state,
+  title={State-level COVID-19 Trend Forecasting Using Mobility and Policy Data},
+  author={Wang, Yifei and Peng, Hao and Sha, Long and Liu, Zheyuan and Hong, Pengyu},
+  journal={medRxiv},
+  pages={2021--01},
+  year={2021},
+  publisher={Cold Spring Harbor Laboratory Press}
+}
+```
